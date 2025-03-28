@@ -1,0 +1,520 @@
+:root {
+    --pastel-pink: #ffd6e0;
+    --pastel-blue: #c1e0ff;
+    --pastel-purple: #e0c1ff;
+    --pastel-green: #d0f0c0;
+    --pastel-yellow: #fff4c1;
+    --text-color: #5a5a5a;
+}
+
+body {
+    font-family: 'Comic Neue', cursive;
+    background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-blue));
+    color: var(--text-color);
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.header h1 {
+    color: #ff85a2;
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: #888;
+    font-size: 1.1rem;
+    margin-top: 0;
+}
+
+/* Main Layout */
+.main-content {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+}
+
+/* Add scroll indicator for mobile */
+.frame-selection-sidebar {
+    position: relative;
+}
+
+.frame-selection-sidebar:after {
+    content: "→";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ff6b8b;
+    font-size: 1.5rem;
+    animation: bounceRight 2s infinite;
+    display: none; /* Hidden by default */
+}
+
+.back-arrow {
+    font-size: 1.8rem; /* Ukuran ikon */
+    color: #ff6b8b; /* Warna ikon */
+}
+
+.back-arrow:hover {
+    color: #7d8aff; /* Warna berubah saat hover */
+}
+
+
+@keyframes bounceRight {
+    0%, 100% { transform: translateY(-50%) translateX(0); }
+    50% { transform: translateY(-50%) translateX(5px); }
+}
+
+
+/* Frame Selection Sidebar */
+.frame-selection-sidebar {
+    width: 350px;
+    flex-shrink: 0;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
+}
+
+.frame-selection-sidebar h2 {
+    color: #7d8aff;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.frame-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+
+.frame-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.frame-option:hover {
+    transform: translateY(-5px);
+    background-color: rgba(125, 138, 254, 0.1);
+}
+
+.frame-option.active {
+    background-color: rgba(125, 138, 254, 0.2);
+    box-shadow: 0 0 0 2px #7d8aff;
+}
+
+.frame-preview {
+    background-color:var(--pastel-purple);
+    width: 140px;
+    height: 180px;
+    border: 4px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.frame-option:hover .frame-preview {
+    border-color: var(--pastel-purple);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.frame-label {
+    margin-top: 8px;
+    font-weight: bold;
+    color: var(--text-color);
+    text-align: center;
+}
+
+/* Right Content Area */
+.right-content {
+    flex: 1;
+    position: relative;
+    min-height: 500px;
+}
+
+/* Camera Placeholder */
+.camera-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fbfcfe;
+    border-radius: 15px;
+    padding: 0px;
+    height: 100%;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+   
+}
+
+.placeholder-image {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    margin: 20px;
+}
+
+.placeholder-text {
+    color: #888;
+    font-size: 1.0rem;
+    text-align: center;
+}
+
+/* Tambahkan ini untuk menyembunyikan gambar di mobile */
+.mobile-hidden {
+    display: block;
+}
+
+/* Camera Section */
+#cameraSection {
+    position: relative;
+    height: 100%;
+}
+
+.camera-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    height: 100%;
+}
+#cameraView {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1);
+}
+
+.camera-frame {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 0;
+    padding-bottom: 100%; /* Creates a square aspect ratio */
+    overflow: hidden;
+    background-color: black;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+
+
+.camera-frame::before {
+    content: "📸 Arahkan kamera dan tersenyum!";
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: white;
+    font-size: 1.0rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+
+
+/* Result Section */
+#resultSection {
+    height: 100%;
+}
+
+.result-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    height: 100%;
+}
+
+.result-frame {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#resultCanvas {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.result-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Buttons */
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Comic Neue', cursive;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background-color: #ff6b8b;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: #ff85a2;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.btn-secondary {
+    background-color: #ff85a2;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary:hover {
+    background-color: #92a0ff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.btn-capture {
+    background-color: #ff85a2;
+    color: white;
+    padding: 12px 12px;
+    font-size: 1.1rem;
+}
+
+.btn-capture:hover {
+    background-color: rgb(142, 123, 128);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Notification */
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffd6e0;
+    color: #d6406f;
+    padding: 15px 25px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.notification.show {
+    opacity: 1;
+}
+
+
+.hidden {
+    display: none;
+}
+
+
+@media (max-width: 900px) {
+
+    .back-arrow {
+        font-size: 1.4rem; /* Ukuran ikon */
+        top: 20px; /* Jarak dari atas */
+        left: 40px; /* Jarak lebih ke kanan */
+        transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .mobile-hidden {
+        display: none;
+    }
+    
+ 
+    
+    .placeholder-text {
+        margin-top: 0;
+        font-size: 1rem;
+    }
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .frame-selection-sidebar h2 {
+        margin-top: 20px;
+        text-align: center;
+        position: sticky;
+        left: 0;
+        right: 0;
+        background: white; /* sesuaikan dengan background Anda */
+        z-index: 1;
+        padding: 10px 0;
+    }
+
+    .frame-selection-sidebar {
+        width: 100%;
+        padding: 0px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden; /* container utama tidak scroll */
+    }
+    
+    .frame-grid {
+        display: flex;
+        overflow-x: auto; /* scroll horizontal hanya untuk grid */
+        -webkit-overflow-scrolling: touch;
+        padding: 10px 20px;
+        gap: 15px;
+        margin-top: -10px; /* kompensasi padding judul jika perlu */
+    }
+    
+    .frame-option {
+        min-width: 120px; /* Set minimum width for each frame */
+        flex-shrink: 0; /* Prevent shrinking */
+    }
+    
+    .frame-preview {
+        width: 110px;
+        height: 150px;
+    }
+    
+    .camera-frame {
+        width: 100%;
+        max-width: 400px;
+        height: 0;
+        padding-bottom: 100%;
+        margin: 0 auto;
+    }
+    
+    .result-frame {
+        max-width: 100%;
+    }
+
+
+    .camera-placeholder {
+        background-color: #fbfafd;
+        border-radius: 15px;
+        padding: 20px;
+        height: 100%;
+    }
+    .camera-placeholder {
+        box-shadow: none; /* Hilangkan box shadow di mobile */
+    }
+}
+
+@media (max-width: 600px) {
+    .camera-placeholder {
+        box-shadow: none; /* Hilangkan box shadow di mobile */
+    }
+    .container {
+        padding: 10px;
+    }
+    
+    .header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .frame-preview {
+        width: 100px;
+        height: 140px;
+    }
+    
+    .placeholder-image {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .result-actions {
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    button {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .notification {
+        font-size: 0.8rem;
+        padding: 10px 10px;
+        top: 20px;
+        white-space: nowrap; /* Prevent text wrapping */
+    }
+}
+
+@media (max-width: 400px) {
+    .frame-preview {
+        width: 90px;
+        height: 130px;
+    }
+    
+    .frame-label {
+        font-size: 0.8rem;
+    }
+}
+
+.copyright {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: var(--dark-purple);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.copyright a {
+    color: var(--dark-purple);
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.copyright a:hover {
+    color: #4c1d95;
+}
+

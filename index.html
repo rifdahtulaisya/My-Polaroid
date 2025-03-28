@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Polaroid - Rifdahtul Aisya</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="img/mypolaroid.png" rel="icon" alt="My Polaroid">
+    <style>
+        :root {
+            --pastel-purple: #d8b4fe;
+            --pastel-pink: #fbcfe8;
+            --pastel-blue: #bfdbfe;
+            --pastel-lavender: #e9d5ff;
+            --pastel-mint: #a7f3d0;
+            --dark-purple: #7e22ce;
+        }
+        
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--pastel-lavender);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        .welcome-screen {
+            background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-blue));
+            border-radius: 20px;
+            padding: 40px;
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border: 3px solid white;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .welcome-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .welcome-text {
+            width: 100%;
+            max-width: 500px;
+            padding-top: 0px;
+            margin-bottom: -200px; /* Hilangkan margin negatif */
+            margin-top: -200px;
+        }    
+        .welcome-line {
+            width: 80%;
+            max-width: 400px;
+            margin-top: -200px; /* Hilangkan margin negatif */
+            margin-bottom: -100px;
+        }
+        
+        .description {
+            margin-top: -70px;
+            color: var(--dark-purple);
+            font-size: 1.2rem;
+            line-height: 1.5;
+            max-width: 80%;
+        }
+        
+        .start-button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            margin: 20px 0;
+            transition: transform 0.3s;
+        }
+        
+        .start-button img {
+            width: 150px;
+            height: auto;
+        }
+        
+        .start-button:hover {
+            transform: scale(1.1);
+        }
+        
+        .bush-image {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            z-index: 1;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            margin-bottom: 20px;
+            color: var(--dark-purple);
+            font-size: 0.9rem;
+        }
+        
+        .copyright a {
+            color: var(--dark-purple);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .copyright a:hover {
+            color: #4c1d95;
+        }
+
+        
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+
+            .welcome-text {
+                margin-bottom: -100px;
+                margin-top: -10px;
+            }
+
+            .welcome-line {
+                margin-top: -100px; /* Naikkan sedikit agar menempel ke teks */
+                margin-bottom: -100px; /* Kurangi jarak bawah supaya menempel ke tombol start */
+            }
+
+
+            .bush-image {
+                margin-top: 20px; /* Beri sedikit jarak agar tidak terlalu dekat */
+            }
+
+            .welcome-screen {
+                padding-left: 10px;
+                padding-right: 10px;
+                padding-top: 0;
+                padding-bottom: 0px;
+                width: 85%;
+            }
+            
+            .description {
+                font-size: 1rem;
+                max-width: 90%;
+                margin-top: 0px;
+            }
+            
+            .start-button {
+                background: transparent;
+                border: none;
+                cursor: pointer;
+                padding: 0;
+                margin-top: 10px;
+                margin-bottom: 170px;
+                transition: transform 0.3s;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100px; /* Sesuaikan dengan gambar */
+                height: 100px; /* Sesuaikan dengan gambar */
+                position: relative;
+                z-index: 10; /* Pastikan tombol di atas elemen lain */
+            }
+
+            .start-button img {
+                width: 100px; /* Pastikan ukurannya tetap 150px */
+                height: auto;
+                display: block; /* Menghindari masalah klik */
+            
+            }
+
+            .start-button:hover {
+                transform: scale(1.1);
+            }
+
+        }
+        
+        /* Desktop Styles */
+        @media (min-width: 769px) {
+            .bush-image {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-screen">
+        <div class="welcome-content">
+            <picture>
+                <source media="(max-width: 768px)" srcset="img/wel/2.png">
+                <source media="(min-width: 769px)" srcset="img/wel/1.png">
+                <img src="img/wel/1.png" alt="Welcome To My Polaroid!" class="welcome-text">
+            </picture>
+            
+            <img src="img/wel/line.png" alt="My Polaroid" class="welcome-line">
+            
+            <p class="description">Capture your memories in a My Polaroid and make every moment!</p>
+            
+            <button id="startButton" class="start-button" href="photo.html">
+                <img src="img/wel/start.png" alt="My Polaroid">
+            </button>
+            
+            <img src="img/wel/semak.png" alt="My Polaroid" class="bush-image">
+        </div>
+    </div>
+
+    <p class="copyright">Copyright by <a href="https://www.instagram.com/rnlzrdpixel.art/" target="_blank">Rifdahtul Aisya</a></p>
+
+    <script>
+        document.getElementById('startButton').addEventListener('click', function() {
+          // Simpan status bahwa button start telah ditekan
+          localStorage.setItem('playMusic', 'true');
+          window.location.href = 'photo.html'; // Navigasi ke halaman drawing
+        });
+      </script>
+
+</body>
+</html>

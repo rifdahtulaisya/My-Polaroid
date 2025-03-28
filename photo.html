@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Polaroid - Rifdahtul Aisya</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="img/mypolaroid.png" rel="icon" alt="My Polaroid">
+</head>
+<body>
+
+
+    <div class="container">
+            <!-- Back Arrow Icon -->
+    <a href="index.html" class="back-arrow">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+        <div class="header">
+            <h1>My Polaroid Memories</h1>
+            <p class="subtitle">Bikin momenmu lebih berwarna!</p>
+        </div>
+        
+        <div id="notification" class="notification hidden"></div>
+        
+        <div class="main-content">
+            <!-- Frame Selection Sidebar -->
+            <div class="frame-selection-sidebar">
+                <h2>🎞️ Pilih Bingkai</h2>
+                <div class="frame-grid">
+                    <div class="frame-option" data-frame="frame1">
+                        <img src="frames/frame1.png" class="frame-preview" alt="My Polaroid">
+                        <span class="frame-label">Cherry Pop</span>
+                    </div>
+                    <div class="frame-option" data-frame="frame2">
+                        <img src="frames/frame2.png" class="frame-preview" alt="My Polaroid">
+                        <span class="frame-label">Checker Aesthetic</span>
+                    </div>
+                    <div class="frame-option" data-frame="frame3">
+                        <img src="frames/frame3.png" class="frame-preview" alt="My Polaroid">
+                        <span class="frame-label">Soft Blossom</span>
+                    </div>
+                    <div class="frame-option" data-frame="frame4">
+                        <img src="frames/frame4.png" class="frame-preview" alt="My Polaroid">
+                        <span class="frame-label">Pink Camo</span>
+                    </div>
+                    <div class="frame-option" data-frame="frame5">
+                        <img src="frames/frame5.png" class="frame-preview" alt="My Polaroid">
+                        <span class="frame-label">Cozy Plaid</span>
+                    </div>
+                    <div class="frame-option" data-frame="frame6">
+                        <img src="frames/frame6.png" class="frame-preview" alt="My Polaroid">
+                        <span class="frame-label">Sweet Strawberry</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Content Area -->
+            <div class="right-content">
+                <!-- Default Placeholder -->
+                <div id="cameraPlaceholder" class="camera-placeholder">
+                    <img src="img/wel/2.png" alt="Camera Preview" class="placeholder-image mobile-hidden">
+                    <p class="placeholder-text">Kamera akan aktif setelah memilih bingkai</p>
+                </div>
+
+                <!-- Camera Section -->
+                <div id="cameraSection" class="hidden">
+                    <div class="camera-wrapper">
+                        <div class="camera-frame">
+                            <!-- Pastikan video element memiliki atribut muted -->
+                            <video id="cameraView" autoplay playsinline muted></video>
+                        </div>
+                        <button id="captureBtn" class="btn-capture"><i class="fas fa-camera"></i></button>
+                    </div>
+                </div>
+
+                <!-- Result Section -->
+                <div id="resultSection" class="hidden">
+                    <div class="result-container">
+                        <div class="result-frame">
+                            <canvas id="resultCanvas"></canvas>
+                        </div>
+                        <div class="result-actions">
+                            <button id="retakeBtn" class="btn-secondary"><i class="fa-solid fa-rotate-right"></i></button>
+                            <button id="downloadBtn" class="btn-primary"><i class="fa-solid fa-download"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p class="copyright">Copyright by <a href="https://www.instagram.com/rnlzrdpixel.art/" target="_blank">Rifdahtul Aisya</a></p>
+    <script src="script.js"></script>
+</body>
+</html>
