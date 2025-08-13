@@ -56,38 +56,54 @@
                 </div>
             </div>
 
-            <!-- Right Content Area -->
-            <div class="right-content">
-                <!-- Default Placeholder -->
-                <div id="cameraPlaceholder" class="camera-placeholder">
-                    <img src="img/wel/2.png" alt="Camera Preview" class="placeholder-image mobile-hidden">
-                    <p class="placeholder-text">Kamera akan aktif setelah memilih bingkai</p>
-                </div>
+            <!-- In photo.html, replace the right-content div with this: -->
+<div class="right-content">
+    <!-- Default Placeholder -->
+    <div id="cameraPlaceholder" class="camera-placeholder">
+        <img src="img/wel/2.png" alt="Camera Preview" class="placeholder-image mobile-hidden">
+        <p class="placeholder-text">Kamera akan aktif setelah memilih bingkai</p>
+    </div>
 
-                <!-- Camera Section -->
-                <div id="cameraSection" class="hidden">
-                    <div class="camera-wrapper">
-                        <div class="camera-frame">
-                            <!-- Pastikan video element memiliki atribut muted -->
-                            <video id="cameraView" autoplay playsinline muted></video>
-                        </div>
-                        <button id="captureBtn" class="btn-capture"><i class="fas fa-camera"></i></button>
-                    </div>
-                </div>
-
-                <!-- Result Section -->
-                <div id="resultSection" class="hidden">
-                    <div class="result-container">
-                        <div class="result-frame">
-                            <canvas id="resultCanvas"></canvas>
-                        </div>
-                        <div class="result-actions">
-                            <button id="retakeBtn" class="btn-secondary"><i class="fa-solid fa-rotate-right"></i></button>
-                            <button id="downloadBtn" class="btn-primary"><i class="fa-solid fa-download"></i></button>
-                        </div>
-                    </div>
-                </div>
+    <!-- Camera Section -->
+    <div id="cameraSection" class="hidden">
+        <div class="camera-wrapper">
+            <div class="camera-frame">
+                <video id="cameraView" autoplay playsinline muted></video>
             </div>
+            <div class="camera-options">
+                <button id="uploadBtn" class="btn-secondary"><i class="fas fa-upload"></i> Upload Foto</button>
+                <button id="captureBtn" class="btn-capture"><i class="fas fa-camera"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Section -->
+    <div id="uploadSection" class="hidden">
+        <div class="upload-wrapper">
+            <div class="upload-preview">
+                <img id="uploadPreview" src="" alt="Uploaded Photo Preview">
+            </div>
+            <div class="upload-options">
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                <button id="selectFileBtn" class="btn-primary"><i class="fas fa-folder-open"></i> Pilih Foto</button>
+                <button id="useCameraBtn" class="btn-secondary"><i class="fas fa-camera"></i> Gunakan Kamera</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Result Section -->
+    <div id="resultSection" class="hidden">
+        <div class="result-container">
+            <div class="result-frame">
+                <canvas id="resultCanvas"></canvas>
+            </div>
+            <div class="result-actions">
+                <button id="retakeBtn" class="btn-secondary"><i class="fa-solid fa-rotate-right"></i></button>
+                <button id="downloadBtn" class="btn-primary"><i class="fa-solid fa-download"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
         </div>
     </div>
 

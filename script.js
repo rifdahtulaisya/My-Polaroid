@@ -1,3 +1,102 @@
+// Add these variables at the top with other variable declarations
+const uploadBtn = document.getElementById('uploadBtn');
+const uploadSection = document.getElementById('uploadSection');
+const uploadPreview = document.getElementById('uploadPreview');
+const selectFileBtn = document.getElementById('selectFileBtn');
+const useCameraBtn = document.getElementById('useCameraBtn');
+const fileInput = document.getElementById('fileInput');
+
+// Add this event listener with other event listeners
+uploadBtn.addEventListener('click', () => {
+    cameraSection.classList.add('hidden');
+    uploadSection.classList.remove('hidden');
+    // Stop camera if it's running
+    if (cameraView.srcObject) {
+        cameraView.srcObject.getTracks().forEach(track => track.stop());
+    }
+});
+
+useCameraBtn.addEventListener('click', () => {
+    uploadSection.classList.add('hidden');
+    cameraSection.classList.remove('hidden');
+    startCamera();
+});
+
+selectFileBtn.addEventListener('click', () => {
+    fileInput.click();
+});
+
+fileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            uploadPreview.src = event.target.result;
+            processUploadedImage();
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+function processUploadedImage() {
+    if (!selectedFrame) return;
+    
+    const frameImg = new Image();
+    frameImg.crossOrigin = "anonymous";
+    frameImg.onload = function() {
+        // Set canvas size to match frame image size
+        resultCanvas.width = frameImg.width;
+        resultCanvas.height = frameImg.height;
+        
+        // Calculate aspect ratio and positioning
+        const uploadedImg = new Image();
+        uploadedImg.src = uploadPreview.src;
+        
+        uploadedImg.onload = function() {
+            const imgAspect = uploadedImg.width / uploadedImg.height;
+            const frameAspect = frameImg.width / frameImg.height;
+            
+            let drawWidth, drawHeight, offsetX = 0, offsetY = 0;
+            
+            if (imgAspect > frameAspect) {
+                // Image is wider than frame - fit to height
+                drawHeight = frameImg.height;
+                drawWidth = uploadedImg.width * (frameImg.height / uploadedImg.height);
+                offsetX = (frameImg.width - drawWidth) / 2;
+            } else {
+                // Image is taller than frame - fit to width
+                drawWidth = frameImg.width;
+                drawHeight = uploadedImg.height * (frameImg.width / uploadedImg.width);
+                offsetY = (frameImg.height - drawHeight) / 2;
+            }
+            
+            // Draw the photo first (background)
+            ctx.drawImage(uploadedImg, offsetX, offsetY, drawWidth, drawHeight);
+            
+            // Then draw the frame on top (foreground)
+            ctx.drawImage(frameImg, 0, 0);
+            
+            // Show result
+            uploadSection.classList.add('hidden');
+            resultSection.classList.remove('hidden');
+        };
+    };
+    frameImg.src = `frames/${selectedFrame}.png`;
+}
+
+// Modify the retakeBtn event listener to handle both camera and upload flows
+retakeBtn.addEventListener('click', () => {
+    resultSection.classList.add('hidden');
+    
+    // Check which mode we were in before
+    if (uploadPreview.src && uploadPreview.src !== '') {
+        uploadSection.classList.remove('hidden');
+    } else {
+        cameraSection.classList.remove('hidden');
+        startCamera();
+    }
+});
+
 // Di awal script.js tambahkan ini:
 document.addEventListener('DOMContentLoaded', () => {
   // Cek fitur mediaDevices support

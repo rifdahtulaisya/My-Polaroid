@@ -517,3 +517,63 @@ button {
 .copyright a:hover {
     color: #4c1d95;
 }
+
+/* Camera and Upload Options */
+.camera-options, .upload-options {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+/* Upload Section */
+.upload-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.upload-preview {
+    width: 100%;
+    max-width: 500px;
+    height: 500px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#uploadPreview {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Adjust camera frame for upload preview */
+.camera-frame {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 500px;
+    overflow: hidden;
+    background-color: black;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+    .camera-frame, .upload-preview {
+        height: 400px;
+    }
+}
+
+@media (max-width: 400px) {
+    .camera-frame, .upload-preview {
+        height: 300px;
+    }
+}
