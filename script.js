@@ -1,3 +1,24 @@
+// Di dalam DOMContentLoaded atau bagian atas script
+frameOptions.forEach(frame => {
+    frame.addEventListener('click', function() {
+        // Hapus active class dari semua frame
+        frameOptions.forEach(f => f.classList.remove('active'));
+        
+        // Tambahkan active class ke frame yang dipilih
+        this.classList.add('active');
+        
+        selectedFrame = this.getAttribute('data-frame');
+        showNotification(frameMessages[selectedFrame]);
+        
+        // Sembunyikan placeholder, tampilkan opsi kamera/upload
+        cameraPlaceholder.classList.add('hidden');
+        cameraSection.classList.remove('hidden');
+        
+        // Mulai kamera
+        startCamera();
+    });
+});
+
 // Add these variables at the top with other variable declarations
 const uploadBtn = document.getElementById('uploadBtn');
 const uploadSection = document.getElementById('uploadSection');
